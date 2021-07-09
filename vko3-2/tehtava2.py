@@ -8,7 +8,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("rivit", help="tulostaa annetun rivimäärän(int) verran tiedostosta", type=int)
 args = parser.parse_args()
 
-
 #lataa bucketista checkpoint3-bucket tiedoston checkpoint.txt
 def download_blob(bucket_name, source_blob_name, destination_file_name):
     storage_client = storage.Client()
@@ -29,13 +28,11 @@ def vertailu(sanat):
 lista = []
 
 with open("checkpoint1.txt") as tiedosto:
-    for i in range(0, args.rivit):
-        lista.append(tiedosto[i])
+    for rivi in tiedosto:
+        lista.append(rivi)
 
 sortattu_lista = sorted(lista, key=vertailu , reverse=False)
 
-for rivi in sortattu_lista:
-    print(rivi) 
-
-
+for i in range(0, args.rivit):
+    print(sortattu_lista[i]) 
 
